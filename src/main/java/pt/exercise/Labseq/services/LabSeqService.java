@@ -1,4 +1,5 @@
 package pt.exercise.Labseq.services;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -20,13 +21,28 @@ public class LabSeqService {
 
         String key = CACHE_KEY_PREFIX + n;
 
+        // Check if result is cached in Redis
         if (Boolean.TRUE.equals(redisTemplate.hasKey(key))) {
             return (BigInteger) redisTemplate.opsForValue().get(key);
         }
 
-        // Calculate and cache result in Redis
-        BigInteger result = calculateLabSeq(n - 4).add(calculateLabSeq(n - 3));
+        // Default result
+        BigInteger result = BigInteger.ZERO;
+
+        // Cases
+        if (n == 1) {
+            result = BigInteger.ONE;
+        } else if (n == 2) {
+            result = BigInteger.ZERO;
+        } else if (n == 3) {
+            result = BigInteger.ONE;
+        } else if (n > 4) {
+            result = calculateLabSeq(n - 4).add(calculateLabSeq(n - 3));
+        }
+
+        // Cache result in Redis
         redisTemplate.opsForValue().set(key, result);
+
         return result;
     }
 }
