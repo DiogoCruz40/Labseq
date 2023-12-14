@@ -68,15 +68,6 @@ public class LabSeqControllerTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content().string("10"));
     }
-
-//    @Test
-//    public void testGetLabSeqValue_NegativeIndex() throws Exception {
-//        // Perform GET request with a negative index
-//        mockMvc.perform(MockMvcRequestBuilders.get("/labseq/-1")
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(MockMvcResultMatchers.status().isBadRequest());
-//    }
-
     @Test
     public void testGetLabSeqValue_IndexZero() throws Exception {
         // Mock LabSeqService behavior for index 0

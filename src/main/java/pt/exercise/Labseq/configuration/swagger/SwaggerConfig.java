@@ -25,9 +25,9 @@ public class SwaggerConfig {
         contact.setUrl("https://diogocruz.pt");
 
         Info info = new Info()
-                .title("Lab Sequence API")
+                .title("Labseq Sequence API")
                 .version("1.0")
-                .description("API for the Lab Sequence service.")
+                .description("API for the Labseq Sequence service.")
                 .contact(contact);
 
         ServerVariable serverVariableUrl = new ServerVariable();

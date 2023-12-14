@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import pt.exercise.Labseq.exceptions.LabSeqException;
 
 import java.math.BigInteger;
 
@@ -86,7 +87,7 @@ public class LabSeqServiceTest {
 	@Test
 	public void testCalculateLabSeq_NegativeIndex() {
 		// Test calculation for a negative index, should throw an exception
-		assertThrows(RuntimeException.class, () -> labSeqService.calculateLabSeq(-1));
+		assertThrows(LabSeqException.class, () -> labSeqService.calculateLabSeq(-1));
 	}
 
 	// Add more test cases as needed

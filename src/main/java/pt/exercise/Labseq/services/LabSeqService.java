@@ -1,6 +1,7 @@
 package pt.exercise.Labseq.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import pt.exercise.Labseq.exceptions.LabSeqException;
@@ -14,7 +15,7 @@ public class LabSeqService {
     private RedisTemplate<String, Object> redisTemplate;
 
     private static final String CACHE_KEY_PREFIX = "labseq:";
-
+    @Cacheable(value = CACHE_KEY_PREFIX, key = "#n")
     public BigInteger calculateLabSeq(int n) {
         if (n < 0) {
             throw new LabSeqException("Index must be non-negative");
