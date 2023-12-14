@@ -8,7 +8,6 @@ RUN apk update && apk add --no-cache fontconfig ttf-dejavu wget
 
 ENV JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF8 -XX:MaxRAMPercentage=96"
 
-ARG JAR_FILE
-COPY --from=build target/${JAR_FILE} app.jar
+COPY --from=build target/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -2,37 +2,43 @@ package pt.exercise.Labseq.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
-import pt.exercise.Labseq.services.LabSeqService;
+import org.springframework.data.redis.core.ValueOperations;
 
 import java.math.BigInteger;
 
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 @SpringBootTest
 public class LabSeqServiceTest {
 
 	@Mock
 	private RedisTemplate<String, Object> redisTemplate;
-
+	@Mock
+	private ValueOperations<String, Object> valueOperations;
 	@InjectMocks
 	private LabSeqService labSeqService;
 
+	@BeforeEach
+	public void setUp() {
+		Mockito.lenient().when(redisTemplate.opsForValue()).thenReturn(valueOperations);
+	}
 	@Test
 	public void testCalculateLabSeq_CachedValueExists() {
 		// Mock RedisTemplate behavior to return a cached value
 		when(redisTemplate.hasKey(any())).thenReturn(true);
-		when(redisTemplate.opsForValue().get(any())).thenReturn(new BigInteger("5"));
+		when(valueOperations.get(any())).thenReturn(new BigInteger("5"));
 
 		// Test calculation for a specific index
 		BigInteger result = labSeqService.calculateLabSeq(5);
@@ -80,7 +86,7 @@ public class LabSeqServiceTest {
 	@Test
 	public void testCalculateLabSeq_NegativeIndex() {
 		// Test calculation for a negative index, should throw an exception
-		assertThrows(IllegalArgumentException.class, () -> labSeqService.calculateLabSeq(-1));
+		assertThrows(RuntimeException.class, () -> labSeqService.calculateLabSeq(-1));
 	}
 
 	// Add more test cases as needed

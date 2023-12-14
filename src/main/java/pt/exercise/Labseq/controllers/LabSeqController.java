@@ -1,6 +1,5 @@
 package pt.exercise.Labseq.controllers;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,6 @@ public class LabSeqController {
     public ResponseEntity<BigInteger> getLabSeqValue(
             @PathVariable int n
     ) {
-        BigInteger result = labSeqService.calculateLabSeq(n);
-        return ResponseEntity.ok(result);
+        return ResponseEntity.ok(labSeqService.calculateLabSeq(n));
     }
 }

@@ -3,6 +3,7 @@ package pt.exercise.Labseq.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
+import pt.exercise.Labseq.exceptions.LabSeqException;
 
 import java.math.BigInteger;
 
@@ -16,9 +17,8 @@ public class LabSeqService {
 
     public BigInteger calculateLabSeq(int n) {
         if (n < 0) {
-            throw new IllegalArgumentException("Index must be non-negative");
+            throw new LabSeqException("Index must be non-negative");
         }
-
         String key = CACHE_KEY_PREFIX + n;
 
         // Check if result is cached in Redis

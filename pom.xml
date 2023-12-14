@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.0</version>
+		<version>3.1.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>pt.exercise</groupId>
@@ -16,7 +16,6 @@
 	<properties>
 		<java.version>17</java.version>
 		<debugger.port>5005</debugger.port>
-		<maven.compiler.plugin.version>3.8.1</maven.compiler.plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -67,18 +66,17 @@
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.1.1</version>
+			<version>5.9.1</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.junit.platform</groupId>
-			<artifactId>junit-platform-runner</artifactId>
-			<version>1.1.1</version>
+			<artifactId>junit-platform-suite-engine</artifactId>
+			<version>1.9.1</version>
 			<scope>test</scope>
 		</dependency>
 
 <!--		REDIS-->
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
@@ -98,7 +96,7 @@
 						</exclude>
 					</excludes>
 					<excludeDevtools>false</excludeDevtools>
-					<mainClass>pt.exercise.Labseq</mainClass>
+					<mainClass>pt.exercise.Labseq.LabseqApplication</mainClass>
 					<skip>false</skip>
 					<jvmArguments>-Xdebug
 						-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:${debugger.port}
@@ -108,7 +106,6 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>${maven.compiler.plugin.version}</version>
 				<configuration>
 					<annotationProcessors>
 						<annotationProcessor>lombok.launch.AnnotationProcessorHider$AnnotationProcessor</annotationProcessor>
@@ -116,6 +113,24 @@
 					<debug>true</debug>
 					<optimize>true</optimize>
 					<release>${java.version}</release>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<reportFormat>plain</reportFormat>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>pt.exercise.Labseq.LabseqApplication</mainClass>
+						</manifest>
+					</archive>
 				</configuration>
 			</plugin>
 		</plugins>

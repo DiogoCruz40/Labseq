@@ -6,9 +6,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    depends_on:
+      - redis
     restart: always
   redis:
-    image: redis:latest
+    image: redis:alpine
     ports:
       - "6379:6379"
     restart: always
+    volumes:
+      - redis:/data
+volumes:
+    redis:
+      driver: local
