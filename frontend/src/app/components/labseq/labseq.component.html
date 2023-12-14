@@ -1,0 +1,12 @@
+
+<div>
+    <label for="labseqIndex">Enter Labseq Index:</label>
+    <input type="number" id="labseqIndex" [(ngModel)]="labseqIndex" min="0" required/>
+    <button (click)="getLabseqValue()">Get Labseq Value</button>
+</div>
+
+<div *ngIf="labseqValue">
+  <h3>Labseq Value:</h3>
+  <p>{{ labseqValue }}</p>
+</div>
+
