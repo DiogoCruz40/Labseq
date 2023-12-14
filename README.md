@@ -22,8 +22,7 @@ For a GUI of all the requests available, use [Swagger](http://localhost:8080/swa
 
 ### Curl Instructions
 
-Get the calculated value, where ${n}
-represents the index of the sequence’s (single) value to return.
+Retrieve the calculated value of the labseq sequence at the specified index (replace  `${n}` with the desired index value).
 
 ```shell
 curl -X 'GET' 'http://localhost:8080/labseq/${n}' \
