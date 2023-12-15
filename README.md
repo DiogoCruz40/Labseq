@@ -52,7 +52,7 @@ For tests, it was used JUnit 5 and Mockito. To run the tests, run the following 
 cd backend
 mvn clean test
  ```
-### **Service**
+### **On Service**
 These tests cover various scenarios, including retrieving a cached value, calculating values for specific indices, handling edge cases (like index 0 and negative indices), and ensuring that exceptions are thrown appropriately. You can add more test cases as needed to cover additional scenarios or edge cases in the LabSeqService.
 
 1. **`testCalculateLabSeq_CachedValueExists`**
@@ -83,7 +83,7 @@ These tests cover various scenarios, including retrieving a cached value, calcul
     - **Assertion:** Verifies that a LabSeqException is thrown when attempting to calculate the LabSeq value with a negative index.
 
 
-### **Controller**
+### **On Controller**
 These tests cover scenarios like retrieving LabSeq values for different indices, handling caching, and testing edge cases (like index 0). You can add more test cases as needed to cover additional scenarios or edge cases in the LabSeqController.
 
 1. **`testGetLabSeqValue`**
