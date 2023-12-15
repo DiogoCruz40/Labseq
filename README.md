@@ -1,6 +1,16 @@
 # **LabSeq Exercise Starter Template**
 
 This template simplifies the startup for the LabSeq exercise, offering a full-stack solution with a Spring Boot backend, Redis caching, and an Angular frontend, all orchestrated with Docker.
+
+## Features
+
+- **Spring Boot Backend:** Implement the LabSeq algorithm with a robust and scalable Spring Boot backend.
+- **Redis Caching:** Optimize performance with Redis caching to efficiently store and retrieve sequence values.
+- **Angular Frontend:** Interact seamlessly with the LabSeq sequence through an intuitive Angular frontend.
+- **Docker Orchestration:** Easily deploy and manage the entire solution using Docker.
+
+## Getting Started
+
 ### **Requirements**
 
 - Maven
@@ -12,7 +22,7 @@ This template simplifies the startup for the LabSeq exercise, offering a full-st
 Navigate to the project directory and run the following commands in the command line:
 
 ```shell
-cd your-project-directory
+cd Labseq
 docker-compose up --build
 ```
 
