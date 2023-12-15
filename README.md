@@ -1,6 +1,6 @@
 # **LabSeq Exercise Starter Template**
 
-This template simplifies the startup for the LabSeq exercise, offering a Spring Boot application with Redis caching orchestrated with Docker.
+This template simplifies the startup for the LabSeq exercise, offering a full-stack solution with a Spring Boot backend, Redis caching, and an Angular frontend, all orchestrated with Docker.
 ### **Requirements**
 
 - Maven
