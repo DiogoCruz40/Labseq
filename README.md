@@ -1,4 +1,4 @@
-# **LabSeq Exercise Starter Template**
+# **LabSeq Exercise**
 
 This template simplifies the startup for the LabSeq exercise, offering a full-stack solution with a Spring Boot backend, Redis caching, and an Angular frontend, all orchestrated with Docker.
 
