@@ -13,14 +13,19 @@ Navigate to the project directory and run the following commands in the command 
 
 ```shell
 cd your-project-directory
-docker-compose up
+docker-compose up --build
 ```
 
 ## **Instructions**
 
+#### Using Browser
+To interact with the LabSeq function, navigate to [localhost](http://localhost) in your browser.
+
+#### Using Swagger
+
 For a GUI of all the requests available, use [Swagger](http://localhost:8080/swagger-ui/index.html).
 
-### Curl Instructions
+#### Using Curl
 
 Retrieve the calculated value of the labseq sequence at the specified index (replace  `${n}` with the desired index value).
 
@@ -29,11 +34,12 @@ curl -X 'GET' 'http://localhost:8080/labseq/${n}' \
   -H 'accept: application/json'
 ```
 
-### Tests
+### Tests in Backend
 
-For tests, it was used JUnit 5 and Mockito. To run the tests, run the following command:
+For tests, it was used JUnit 5 and Mockito. To run the tests, run the following commands:
 
 ```shell
+cd backend
 mvn clean test
  ```
 ### **Service**

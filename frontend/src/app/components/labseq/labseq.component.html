@@ -1,12 +1,21 @@
 
-<div>
-    <label for="labseqIndex">Enter Labseq Index:</label>
-    <input type="number" id="labseqIndex" [(ngModel)]="labseqIndex" min="0" required/>
-    <button (click)="getLabseqValue()">Get Labseq Value</button>
+<form [formGroup]="LabseqForm" class="m-3 col-md-3 col-12">
+  <p class="fs-3" for="labseqIndex">Enter Labseq Index:</p>
+  <div class="form-group d-flex">
+    <input class="form-control" type="number" id="labseqIndex" formControlName="labseqIndex" min="0" required/>
+    <button type="submit" class="col-3 ms-2 btn btn-primary" (click)="getLabseqValue()">Get Labseq Value</button>
 </div>
 
-<div *ngIf="labseqValue">
+<div *ngIf="LabseqForm.controls['labseqIndex'].errors?.['required'] || Error_bool" class="text-danger fs-4">
+{{ errorMessage }}
+</div>
+</form>
+
+
+
+
+<div class="m-3" *ngIf="labseqValue">
   <h3>Labseq Value:</h3>
-  <p>{{ labseqValue }}</p>
+  <p>The labseq value of {{ labseqIndexResponse }} is {{ labseqValue }}.</p>
 </div>
 

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { LabseqService } from '../../services/labseq.service';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { APIClientService } from '../../services/apiclient.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-labseq',
@@ -10,21 +8,35 @@ import { APIClientService } from '../../services/apiclient.service';
   styleUrl: './labseq.component.scss'
 })
 export class LabseqComponent {
-
   labseqIndex: number;
+  labseqIndexResponse: number;
   labseqValue: any;
-
+  LabseqForm: FormGroup;
+  errorMessage : string = '';
+  Error_bool : boolean = false;
   constructor(private labseqService:LabseqService){}
 
+  ngOnInit(): void {
+    this.LabseqForm = new FormGroup({
+      labseqIndex: new FormControl('', Validators.required)
+    });
+  }
+
   getLabseqValue(): void {
-    if (this.labseqIndex) {
-      this.labseqService.getLabseqValue(this.labseqIndex)
+    if (this.LabseqForm.valid) {
+      this.labseqService.getLabseqValue(this.LabseqForm.value.labseqIndex)
         .then(value => {
           this.labseqValue = value;
+          this.labseqIndexResponse = this.LabseqForm.value.labseqIndex;
+          this.errorMessage = '';
+          this.Error_bool = false;
         })
         .catch(error => {
-          console.error('Error fetching labseq value:', error);
+          this.Error_bool = true;
+          this.errorMessage = 'Error fetching labseq value';
         });
+    }else{
+      this.errorMessage = 'Please enter a valid index';
     }
   }
 }
