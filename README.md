@@ -19,7 +19,7 @@ This simplifies the startup for the LabSeq exercise, offering a full-stack solut
 
 ### **Start-up**
 
-Navigate to the project directory and run the following commands in the command line:
+Navigate to the project directory and run docker through the following command lines:
 
 ```shell
 cd Labseq
